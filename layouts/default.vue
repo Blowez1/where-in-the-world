@@ -1,8 +1,8 @@
 <template>
-  <div class="app" :class="checkTheme(theme)">
+  <div class="app" :class="checkTheme()">
     <Header />
     <main>
-      <div class="container" :class="checkTheme(theme)">
+      <div class="container">
         <div class="content">
           <Nuxt />
         </div>
@@ -14,17 +14,12 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  computed: mapState(['theme']),
   methods: {
     ...mapActions(['initTheme']),
-    checkTheme(theme) {
-      if (theme == 'dark') {
-        return 'dark'
-      }
-    },
+    ...mapGetters(['checkTheme'])
   },
   mounted() {
     if (localStorage.theme) {

@@ -11,7 +11,8 @@ export const actions = {
     commit('SET_THEME', payload)
   },
   changeTheme({
-    commit,state
+    commit,
+    state
   }, payload) {
     if (state.theme == "light") {
       commit('SET_THEME', {
@@ -34,4 +35,9 @@ export const mutations = {
   }
 }
 
-export const getters = {}
+export const getters = {
+  checkTheme(state) {
+    if (state.theme == 'dark')
+      return 'dark'
+    }
+}
