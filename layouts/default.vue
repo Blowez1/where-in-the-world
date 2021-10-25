@@ -1,14 +1,15 @@
 <template>
-  <div class="app" :class="theme">
-    <div class="container">
-      <Header :theme="theme" />
-
-      <div class="content">
-        <Nuxt />
+  <div class="app" :class="checkTheme(theme)">
+    <Header />
+    <main>
+      <div class="container" :class="checkTheme(theme)">
+        <div class="content">
+          <Nuxt />
+        </div>
       </div>
+    </main>
 
-      <Footer />
-    </div>
+    <Footer />
   </div>
 </template>
 
@@ -16,14 +17,14 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {
-      themeCode: '',
-    }
-  },
   computed: mapState(['theme']),
   methods: {
     ...mapActions(['initTheme']),
+    checkTheme(theme) {
+      if (theme == 'dark') {
+        return 'dark'
+      }
+    },
   },
   mounted() {
     if (localStorage.theme) {
@@ -31,11 +32,6 @@ export default {
     } else {
       localStorage.setItem('theme', 'light')
     }
-  },
-  watch: {
-    name(newName) {
-      localStorage.name = newName
-    },
   },
 }
 </script>

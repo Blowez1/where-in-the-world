@@ -1,14 +1,68 @@
-.changeBtn {
-    color: #000;
-    border: 1px solid red;
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap');
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #0D0E10;
 }
 
-.light {
+.container {
+    max-width: 1440px;
+}
+
+header {
+    padding-block: 14px;
     background-color: #fff;
-    color: #000;
+    width: 100%;
+    transition: 200ms background;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+    .themeChanger {
+        cursor: pointer;
+        user-select: none;
+
+        svg {
+            transition: 200ms fill;
+        }
+
+        span {
+            margin-left: 0.4rem;
+            font-weight: 600;
+            transition: 200ms color;
+        }
+    }
 }
 
-.dark {
-    background-color: black;
-    color: #fff;
+.logo {
+    color: #0D0E10;
+    font-size: 1.875rem;
+    font-weight: 800;
+    transition: 200ms color;
+}
+
+main {
+    transition: 200ms background;
+}
+
+.content {
+    width: 100%;
+    height: 100vh;
+}
+
+
+.app.dark {
+    header {
+        background-color: #2B3743;
+        fill: #fff;
+
+        .themeChanger,
+        .logo {
+            color: #fff;
+        }
+    }
+
+    main {
+        background-color: #202D36;
+        height: 100%;
+        width: 100%;
+    }
 }

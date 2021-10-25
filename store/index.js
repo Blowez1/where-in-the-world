@@ -1,8 +1,9 @@
-//sTATE
+//State
 export const state = () => ({
   theme: ""
 })
 
+//Actions
 export const actions = {
   initTheme({
     commit
@@ -10,9 +11,9 @@ export const actions = {
     commit('SET_THEME', payload)
   },
   changeTheme({
-    commit
+    commit,state
   }, payload) {
-    if (payload.theme == "light") {
+    if (state.theme == "light") {
       commit('SET_THEME', {
         theme: "dark"
       })
@@ -26,12 +27,11 @@ export const actions = {
   }
 }
 
+//Mutations
 export const mutations = {
   SET_THEME(state, payload) {
     state.theme = payload.theme
   }
 }
 
-export const getters = {
-
-}
+export const getters = {}
