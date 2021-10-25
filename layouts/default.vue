@@ -19,7 +19,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   methods: {
     ...mapActions(['initTheme']),
-    ...mapGetters(['checkTheme'])
+    ...mapGetters(['checkTheme']),
   },
   mounted() {
     if (localStorage.theme) {

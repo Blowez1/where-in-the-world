@@ -1,19 +1,41 @@
 //State
 export const state = () => ({
-  theme: ""
+  theme: "",
+  countries: [],
+  loading: false
 })
 
 //Actions
 export const actions = {
+
   initTheme({
     commit
   }, payload) {
     commit('SET_THEME', payload)
   },
+
+  async getAllCountries({
+    commit
+  }) {
+    commit('SET_LOAD', {
+      load: true
+    })
+    const countries = await this.$axios.$get('https://restcountries.com/v2/all').then((data) => {
+      commit('SET_LOAD', {
+        load: false
+      })
+      commit('SET_COUNTRIES', { countries : data })
+    })
+
+
+
+
+
+  },
   changeTheme({
     commit,
     state
-  }, payload) {
+  }) {
     if (state.theme == "light") {
       commit('SET_THEME', {
         theme: "dark"
@@ -32,12 +54,24 @@ export const actions = {
 export const mutations = {
   SET_THEME(state, payload) {
     state.theme = payload.theme
+  },
+  SET_COUNTRIES(state, payload) {
+    state.countries = payload.countries
+  },
+  SET_LOAD(state, payload) {
+    state.loading = payload.load
   }
 }
+
 
 export const getters = {
   checkTheme(state) {
     if (state.theme == 'dark')
       return 'dark'
+  },
+  checkLoading(state) {
+    if (state.loading == false) {
+      return 'done'
     }
+  }
 }
