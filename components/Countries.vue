@@ -3,7 +3,7 @@
     <Country
       :country="country"
       v-for="country in countries"
-      :key="country.name"
+      :key="country.name.common"
     />
   </div>
 </template>
