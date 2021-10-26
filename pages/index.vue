@@ -19,11 +19,17 @@
           <input type="text" placeholder="Search for a country..." />
         </span>
       </div>
-      <select class="region-select form-control">
+      <select
+        @change="filterByRegion({ regionSelect })"
+        v-model="regionSelect"
+        class="region-select form-control"
+      >
         <option value="0">Filter by Region</option>
-        <option value="1">Africa</option>
-        <option value="2">America</option>
-
+        <option>Africa</option>
+        <option>America</option>
+        <option>Asia</option>
+        <option>Europe</option>
+        <option>Oceania</option>
       </select>
     </div>
     <Countries />
@@ -31,7 +37,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
+  data() {
+    return {
+      regionSelect: 0,
+    }
+  },
+  methods: {
+    ...mapActions(['filterByRegion']),
+  },
   mounted() {
     this.$store.dispatch('getAllCountries')
   },

@@ -13,24 +13,20 @@ export const actions = {
   }, payload) {
     commit('SET_THEME', payload)
   },
-
   async getAllCountries({
     commit
   }) {
     commit('SET_LOAD', {
       load: true
     })
-    const countries = await this.$axios.$get('https://restcountries.com/v2/all').then((data) => {
+    const countries = await this.$axios.$get('https://restcountries.com/v3.1/all').then((data) => {
       commit('SET_LOAD', {
         load: false
       })
-      commit('SET_COUNTRIES', { countries : data })
+      commit('SET_COUNTRIES', {
+        countries: data
+      })
     })
-
-
-
-
-
   },
   changeTheme({
     commit,
@@ -46,6 +42,25 @@ export const actions = {
         theme: "light"
       })
       localStorage.setItem('theme', "light")
+    }
+  },
+  async filterByRegion({
+    commit
+  }, payload) {
+    if (payload.regionSelect == 0) {
+      return false
+    } else {
+      commit('SET_LOAD', {
+        load: true
+      })
+      const filteredCountries = await this.$axios.$get('https://restcountries.com/v3.1/region/' + payload.regionSelect).then((data) => {
+        commit('SET_LOAD', {
+          load: false
+        })
+        commit('SET_COUNTRIES', {
+          countries: data
+        })
+      })
     }
   }
 }

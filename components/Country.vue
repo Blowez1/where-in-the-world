@@ -6,13 +6,13 @@
         :style="backgroundImage(country.flags.png)"
       ></div>
       <div class="country-card-body">
-        <div class="title">{{ country.name }}</div>
+        <div class="title">{{ country.name.common}}</div>
         <div class="info">
           <div class="info-item">
             <span>Population :</span> {{ Intl.NumberFormat().format(country.population) }}
           </div>
           <div class="info-item"><span>Region :</span> {{ country.region }}</div>
-          <div class="info-item"><span>Capital :</span> {{ country.capital }}</div>
+          <div class="info-item" v-if="country.capital"><span>Capital :</span> {{ country.capital[0] }}</div>
         </div>
       </div>
     </div>
