@@ -134,8 +134,23 @@ main {
     width: 100%;
 }
 
+.first-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 35px;
+
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+
+        .region-select {
+            margin-top: 15px;
+        }
+
+    }
+}
+
 .search-input {
-    margin-top: 45px;
     padding: 12px 25px;
     transition: 200ms background;
     display: inline-block;
@@ -172,6 +187,23 @@ main {
         }
 
 
+    }
+}
+
+.region-select {
+    padding: 12px 25px;
+    font-weight: 600;
+    display: inline-block;
+    transition: 200ms background;
+    border: none;
+    width: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    
+
+    &:focus {
+        outline: 0;
+        border: none;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
 }
 
@@ -257,5 +289,10 @@ main {
         background-color: #2B3743;
 
         color: #fff
+    }
+
+    .region-select {
+        background-color: #2B3743;
+        color: #fff;
     }
 }
