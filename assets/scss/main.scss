@@ -76,12 +76,26 @@ body {
     max-width: 1440px;
 }
 
+
+
+.logo {
+    color: #0D0E10;
+    font-size: 1.875rem;
+    font-weight: 800;
+    transition: 200ms color;
+
+    @media screen and (max-width: 992px) {
+        font-size: 1.25rem;
+    }
+}
+
 header {
     padding-block: 14px;
     background-color: #fff;
     width: 100%;
     transition: 200ms background;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
 
     .themeChanger {
         cursor: pointer;
@@ -96,18 +110,24 @@ header {
             font-weight: 600;
             transition: 200ms color;
         }
-    }
-}
 
-.logo {
-    color: #0D0E10;
-    font-size: 1.875rem;
-    font-weight: 800;
-    transition: 200ms color;
+        @media screen and (max-width: 992px) {
+            svg {
+                width: 15px;
+            }
+
+            span {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    
 }
 
 main {
     transition: 200ms background;
+    overflow-x: hidden;
 }
 
 .content {
@@ -142,6 +162,16 @@ main {
         &:focus {
             outline: none;
         }
+    }
+
+    @media screen and (max-width: 992px) {
+        padding: 12px 25px 12px 35px;
+        
+        span {
+            width: 100%;
+        }
+
+
     }
 }
 
