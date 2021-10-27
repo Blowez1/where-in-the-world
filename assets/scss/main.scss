@@ -71,10 +71,10 @@ body {
     z-index: -999 !important;
 }
 
-
 .container {
     max-width: 1440px;
 }
+
 
 
 
@@ -122,7 +122,7 @@ header {
         }
     }
 
-    
+
 }
 
 main {
@@ -182,7 +182,7 @@ main {
 
     @media screen and (max-width: 992px) {
         padding: 12px 25px 12px 35px;
-        
+
         span {
             width: 100%;
         }
@@ -199,7 +199,7 @@ main {
     border: none;
     width: auto;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    
+
 
     &:focus {
         outline: 0;
@@ -210,6 +210,13 @@ main {
 
 .countries {
     margin-top: 45px;
+}
+
+.country-item {
+    a {
+        text-decoration: none;
+        color: #0D0E10;
+    }
 }
 
 .country-card {
@@ -256,6 +263,64 @@ main {
     }
 }
 
+.back-btn {
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px 35px;
+    margin-top: 50px;
+    text-decoration: none;
+    color: #0D0E10;
+
+    &:hover {
+        color: #0D0E10;
+    }
+}
+
+.country-single-page {
+    margin-top: 50px;
+
+    h1 {
+        font-weight: 800;
+    }
+
+    span {
+        font-weight: 600;
+    }
+
+    img {
+        width: 550px;
+
+        @media screen and (max-width: 992px) {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+    }
+
+    .spec-item {
+        margin-bottom: 6px;
+    }
+}
+
+.language-item {
+    &:after {
+        content: ', ';
+    }
+
+    &:nth-last-child(1) {
+        &:after {
+            content: '';
+        }
+    }
+}
+
+.border-item {
+    display: inline-block;
+    background-color: #fff;
+    padding: 2px 15px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    margin-right: 10px;
+    transition: 200ms background;
+}
 
 .app.dark {
     header {
@@ -295,5 +360,13 @@ main {
     .region-select {
         background-color: #2B3743;
         color: #fff;
+    }
+
+    .country-single-page {
+        color: #fff;
+    }
+
+    .border-item {
+        color: #202D36;
     }
 }
