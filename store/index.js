@@ -2,6 +2,7 @@
 export const state = () => ({
   theme: "",
   countries: [],
+  country: {},
   loading: false,
   error: false
 })
@@ -101,6 +102,37 @@ export const actions = {
           })
       }
     }
+  },
+  async getCountryByCode({
+    commit
+  }, payload) {
+  
+    commit('SET_LOAD', {
+      load: true
+    })
+
+    const query = await this.$axios.$get('https://restcountries.com/v2/alpha?codes=' + payload.code).catch((err) => {
+      if (err) {
+
+        commit('SET_ERROR', {
+          error: true
+        })
+      }
+    }).then((data) => {
+      commit('SET_LOAD', {
+        load: false
+      })
+
+      commit('SET_COUNTRY', {
+        country: data[0]
+      })
+
+      if (data) {
+        commit('SET_ERROR', {
+          error: false
+        })
+      }
+    })
   }
 }
 
@@ -112,6 +144,9 @@ export const mutations = {
   SET_COUNTRIES(state, payload) {
     state.countries = payload.countries
   },
+  SET_COUNTRY(state, payload) {
+    state.country = payload.country
+  },
   SET_LOAD(state, payload) {
     state.loading = payload.load
   },
@@ -119,7 +154,6 @@ export const mutations = {
     state.error = payload.error
   }
 }
-
 
 export const getters = {
   checkTheme(state) {
@@ -132,3 +166,5 @@ export const getters = {
     }
   }
 }
+
+
