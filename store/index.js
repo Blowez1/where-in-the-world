@@ -2,7 +2,8 @@
 export const state = () => ({
   theme: "",
   countries: [],
-  loading: false
+  loading: false,
+  error: false
 })
 
 //Actions
@@ -62,6 +63,44 @@ export const actions = {
         })
       })
     }
+  },
+  async search({
+    commit
+  }, payload) {
+    if (payload.searchInput == '') {
+      return false
+    } else {
+      if (payload.searchInput.length <= 2) {
+        alert('Please write character more than 2!!!!')
+      } else {
+        commit('SET_LOAD', {
+          load: true
+        })
+
+        const query = await this.$axios.$get('https://restcountries.com/v3.1/name/' + payload.searchInput)
+          .catch((err) => {
+            if (err) {
+              commit('SET_ERROR', {
+                error: true
+              })
+            }
+          })
+          .then((data) => {
+            commit('SET_LOAD', {
+              load: false
+            })
+            commit('SET_COUNTRIES', {
+              countries: data
+            })
+
+            if (data) {
+              commit('SET_ERROR', {
+                error: false
+              })
+            }
+          })
+      }
+    }
   }
 }
 
@@ -75,6 +114,9 @@ export const mutations = {
   },
   SET_LOAD(state, payload) {
     state.loading = payload.load
+  },
+  SET_ERROR(state, payload) {
+    state.error = payload.error
   }
 }
 

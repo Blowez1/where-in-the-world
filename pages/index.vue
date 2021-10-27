@@ -16,7 +16,12 @@
               transform="translate(-1.057 -1.333)"
             />
           </svg>
-          <input type="text" placeholder="Search for a country..." />
+          <input
+            v-model="searchInput"
+            v-on:keyup.enter="search({ searchInput })"
+            type="text"
+            placeholder="Search for a country..."
+          />
         </span>
       </div>
       <select
@@ -33,22 +38,27 @@
       </select>
     </div>
     <Countries />
+    <div v-if="error" class="alert alert-danger" role="alert">
+      Wrong country name!
+    </div>
   </section>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions,mapState } from 'vuex'
 export default {
   data() {
     return {
       regionSelect: 0,
+      searchInput: '',
     }
   },
   methods: {
-    ...mapActions(['filterByRegion']),
+    ...mapActions(['filterByRegion', 'search']),
   },
   mounted() {
     this.$store.dispatch('getAllCountries')
   },
+  computed : mapState(['error'])
 }
 </script>

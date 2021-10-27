@@ -64,6 +64,12 @@ export default {
     }
   },
 
+  loading: {
+    color: '#202D36',
+    failedColor : '#842029',
+    height: '3px'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extractCSS: true
