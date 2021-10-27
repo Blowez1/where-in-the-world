@@ -60,7 +60,10 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'tr'
+      name : 'Where in the World',
+      description : 'Where in the World',
+      lang: 'en',
+
     }
   },
 
